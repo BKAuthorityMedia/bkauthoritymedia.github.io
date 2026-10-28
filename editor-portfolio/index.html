@@ -29,6 +29,11 @@ if(GA4_ID!=='G-XXXXXXXXXX'){
  gtag('config',GA4_ID);
 }
 </script>
+<!-- Meta Pixel analytics: PageView plus portfolio and enquiry click events. -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version="2.0";n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");
+fbq("init","2157128921529692");fbq("track","PageView");
+</script>
 </head>
 <body>
 <header class="topbar"><div class="wrap nav">
@@ -51,7 +56,7 @@ if(GA4_ID!=='G-XXXXXXXXXX'){
 </div>
 <div class="grid" id="projectGrid">
 <article class="project" data-category="podcast">
-<div class="media"><iframe loading="lazy" title="Parenthood Rewritten podcast videos" src="https://www.youtube.com/embed?listType=user_uploads&list=Parenthoodrewritten" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+<div class="media"><a href="https://www.youtube.com/@Parenthoodrewritten/videos" target="_blank" rel="noopener" aria-label="Watch Parenthood Rewritten videos"><div class="poster"><div class="poster-label"><small>PODCAST / SELECTED WORK</small>Parenthood Rewritten</div><span class="play">▶</span></div></a></div>
 <div class="project-body"><div class="project-top"><h3>Parenthood Rewritten</h3><span class="tag">Podcast</span></div><p>Podcast editing and social-first video content built to keep conversations engaging across platforms.</p><a class="project-link track" data-event="parenthood_channel" href="https://www.youtube.com/@Parenthoodrewritten/videos" target="_blank" rel="noopener">Watch on YouTube ↗</a> <span style="color:#6f6b61"> · </span> <a class="project-link track" data-event="parenthood_instagram" href="https://www.instagram.com/parenthoodrewritten/reels/" target="_blank" rel="noopener">Instagram Reels ↗</a></div>
 </article>
 <article class="project" data-category="podcast">
@@ -119,11 +124,11 @@ if(GA4_ID!=='G-XXXXXXXXXX'){
 <div class="mobile-bar"><a class="button gold track" data-event="mobile_quote" href="https://wa.me/94767794670?text=Hi%20BK%20Authority%20Media%2C%20I%27d%20like%20a%20project-based%20editing%20quote." target="_blank" rel="noopener">Discuss your project on WhatsApp ↗</a></div>
 <script>
 document.getElementById('year').textContent=new Date().getFullYear();
-document.querySelectorAll('.filter').forEach(button=>button.addEventListener('click',()=>{
+document.querySelectorAll('.filter').forEach(button=>button.addEventListener('click',()=>{\n if(typeof fbq==='function')fbq('trackCustom','PortfolioFilter',{filter:button.dataset.filter});
  document.querySelectorAll('.filter').forEach(b=>b.classList.remove('active'));button.classList.add('active');
  const filter=button.dataset.filter;document.querySelectorAll('.project').forEach(card=>{card.hidden=filter!=='all'&&card.dataset.category!==filter});
  if(typeof gtag==='function'&&typeof GA4_ID!=='undefined'&&GA4_ID!=='G-XXXXXXXXXX')gtag('event','portfolio_filter',{event_category:'portfolio',filter_name:filter});
 }));
-document.querySelectorAll('.track').forEach(link=>link.addEventListener('click',()=>{if(typeof gtag==='function'&&typeof GA4_ID!=='undefined'&&GA4_ID!=='G-XXXXXXXXXX')gtag('event','lead_or_portfolio_click',{event_category:'engagement',event_label:link.dataset.event||link.href});}));
+document.querySelectorAll('.track').forEach(link=>link.addEventListener('click',()=>{\n if(typeof fbq==='function')fbq('trackCustom','PortfolioEngagement',{action:link.dataset.event||link.href});if(typeof gtag==='function'&&typeof GA4_ID!=='undefined'&&GA4_ID!=='G-XXXXXXXXXX')gtag('event','lead_or_portfolio_click',{event_category:'engagement',event_label:link.dataset.event||link.href});}));
 </script>
 </body></html>
