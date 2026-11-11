@@ -118,6 +118,12 @@
         .checks { display: flex; flex-wrap: wrap; gap: 0.5rem; }
         .checks label { display: inline-flex; align-items: center; gap: 0.45rem; border: 1px solid #3a3a37; padding: 0.5rem 0.8rem; margin: 0; cursor: pointer; font-size: 0.88rem; }
         .checks input { width: auto; accent-color: var(--accent); margin: 0; }
+        .linkbtn { display: inline-block; background: none; border: 1px solid var(--accent); color: var(--accent); font-family: inherit; font-size: 0.8rem; padding: 0.25rem 0.6rem; margin: 0.3rem 0.4rem 0 0; cursor: pointer; }
+        .linkbtn:hover { background: rgba(231,168,62,0.12); }
+        .share-hint b { color: var(--accent); font-weight: 500; user-select: all; }
+        .linkcheck { border: 1px solid var(--border); padding: 0.7rem 0.9rem; margin-top: 0.75rem; font-size: 0.88rem; }
+        .linkcheck.ok { border-color: var(--ok); color: var(--ok); }
+        .linkcheck.bad { border-color: var(--accent-sec); color: #f3bdb6; }
         .optional { color: var(--text-muted); font-size: 0.85rem; margin: -0.75rem 0 1.25rem; }
 
         .site-footer { padding: 2.5rem 5%; border-top: 1px solid var(--border); }
@@ -360,6 +366,8 @@
                     <div style="margin-top:1.5rem">
                         <label for="footageLink">Footage එක දැනටමත් Google Drive / Dropbox එකක තියෙනවද? Link එක මෙතන paste කරන්න</label>
                         <input id="footageLink" name="footageLink" type="url" inputmode="url" placeholder="https://drive.google.com/..." maxlength="500">
+                        <p class="hint share-hint">Google Drive link එකක් දෙනවා නම්, ඒක <b>bkauthmedia@gmail.com</b> එකට share කරන්න (Viewer access ඇති). නැත්නම් “Anyone with the link” දාන්න. <button type="button" class="linkbtn" id="copyShare">Email එක copy කරන්න</button></p>
+                        <div class="linkcheck" id="linkCheck" hidden><span id="linkMsg"></span><br><a class="linkbtn" id="linkShare" target="_blank" rel="noopener noreferrer" hidden>Share settings open කරන්න</a><button type="button" class="linkbtn" id="linkRetry" hidden>ආයෙ check කරන්න</button></div>
                         <p class="hint">Footage එක තාම ready නැද්ද? අවුලක් නෑ. දැන් form එක එවලා, footage එක පස්සේ WhatsApp එකෙන් එවන්න.</p>
                     </div>
                     <p class="safe">ඔයාගේ files ආරක්ෂිතයි. ඒවා කෙළින්ම යන්නේ අපේ private Google Drive එකට. අපේ team එකට විතරයි බලන්න පුළුවන්.</p>
@@ -660,6 +668,62 @@
             await Promise.all(workers);
             return failed;
         }
+
+        /* ----- footage link: tell the client to share it with us, and check that we can open it ----- */
+        var SHARE_EMAIL = 'bkauthmedia@gmail.com';
+        var LINK_TEXT = {
+            checking: 'Link එක check කරනවා…',
+            ok: 'හරි ✓ අපිට මේ link එක open කරන්න පුළුවන්.',
+            bad: 'අපිට තාම මේ link එක open කරන්න බෑ. ඒක bkauthmedia@gmail.com එකට share කරලා ආයෙ check කරන්න.',
+            other: 'මේ link එක ඕන කෙනෙක්ට බලන්න පුළුවන් විදිහට share කරලා තියෙනවද කියලා බලන්න.',
+            copy: 'Email එක copy කරන්න',
+            copied: 'Copy වුණා ✓'
+        };
+        var linkTimer = null, linkSeq = 0;
+        function showLink(state, shareUrl) {
+            var box = $('linkCheck');
+            box.hidden = !state;
+            box.className = 'linkcheck' + (state === 'ok' ? ' ok' : state === 'bad' ? ' bad' : '');
+            $('linkMsg').textContent = state ? LINK_TEXT[state] : '';
+            $('linkShare').hidden = state !== 'bad';
+            $('linkRetry').hidden = state !== 'bad';
+            if (shareUrl) $('linkShare').href = shareUrl;
+        }
+        async function checkLink() {
+            var url = v('footageLink'), seq = ++linkSeq;
+            if (!url) { showLink(''); return; }
+            var google = /^https?:\/\/(drive|docs)\.google\.com\//i.test(url);
+            if (!google) { showLink(/^https?:\/\//i.test(url) ? 'other' : ''); return; }
+            showLink('checking');
+            try {
+                var d = await api({ action: 'checkLink', url: url }, 2);
+                if (seq !== linkSeq) return; // the link changed while we were checking
+                if (d.kind === 'other') { showLink('other'); return; }
+                // userstoinvite asks Google to open its share box with our address already filled in
+                showLink(d.access ? 'ok' : 'bad', url + (url.indexOf('?') === -1 ? '?' : '&') + 'userstoinvite=' + encodeURIComponent(SHARE_EMAIL));
+            } catch (err) {
+                if (seq === linkSeq) showLink('');
+            }
+        }
+        $('footageLink').addEventListener('input', function () { clearTimeout(linkTimer); linkTimer = setTimeout(checkLink, 900); });
+        $('footageLink').addEventListener('change', function () { clearTimeout(linkTimer); checkLink(); });
+        $('linkRetry').addEventListener('click', checkLink);
+        window.addEventListener('focus', function () { if (!$('linkRetry').hidden) checkLink(); }); // back from the Drive tab
+        $('copyShare').addEventListener('click', function () {
+            var btn = $('copyShare');
+            function done() { btn.textContent = LINK_TEXT.copied; setTimeout(function () { btn.textContent = LINK_TEXT.copy; }, 3000); }
+            function oldCopy() {
+                try {
+                    var t = document.createElement('textarea');
+                    t.value = SHARE_EMAIL; t.style.position = 'fixed'; t.style.opacity = '0';
+                    document.body.appendChild(t); t.select();
+                    if (document.execCommand('copy')) done();
+                    document.body.removeChild(t);
+                } catch (e) {}
+            }
+            if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(SHARE_EMAIL).then(done, oldCopy);
+            else oldCopy();
+        });
 
         /* ----- next / submit ----- */
         form.addEventListener('submit', async function (e) {
