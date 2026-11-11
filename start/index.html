@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start a Project | BK Authority Media</title>
+    <meta name="description" content="Tell BK Authority Media about your video project and upload your footage. No account needed.">
+    <link rel="canonical" href="https://bkauthoritymedia.com/start/">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0B0B0B;
+            --surface: #121212;
+            --text-main: #EDE9DF;
+            --text-muted: #9D9A91;
+            --accent: #E7A83E;
+            --accent-sec: #D45B4F;
+            --ok: #25D366;
+            --border: #2B2B29;
+            --font-heading: 'Oswald', sans-serif;
+            --font-mono: 'Roboto Mono', monospace;
+        }
+        *, *::before, *::after { box-sizing: border-box; }
+        body { background: var(--bg); color: var(--text-main); font-family: var(--font-mono); margin: 0; line-height: 1.5; }
+        a { color: inherit; text-decoration: none; }
+        [hidden] { display: none !important; }
+
+        .site-header { position: sticky; top: 0; background: rgba(11,11,11,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); z-index: 100; }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; padding: 1rem 5%; max-width: 1600px; margin: 0 auto; gap: 1rem; }
+        .brand { display: flex; align-items: center; gap: 0.75rem; }
+        .logo-mark { width: 24px; height: 24px; border: 2px solid var(--text-main); display: flex; align-items: center; justify-content: center; flex: none; }
+        .playhead-line { width: 2px; height: 12px; background: var(--accent); }
+        .wordmark { font-family: var(--font-heading); letter-spacing: 0.05em; font-size: 1.05rem; }
+        .desktop-nav { display: flex; gap: 2rem; }
+        .desktop-nav a { font-size: 0.75rem; color: var(--text-muted); }
+        .desktop-nav a:hover { color: var(--text-main); }
+
+        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.9rem 1.6rem; font-family: var(--font-mono); font-size: 0.8rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; border: 1px solid var(--border); background: transparent; color: var(--text-main); transition: transform .2s ease-out, background-color .2s ease-out, border-color .2s ease-out; }
+        .btn:hover { transform: translateY(-2px); border-color: var(--text-main); }
+        .btn-primary { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+        .btn-primary:hover { background: #f0b95c; border-color: #f0b95c; }
+        .btn-wa { background: var(--ok); border-color: var(--ok); color: #06240f; }
+        .btn-wa:hover { background: #3be07a; border-color: #3be07a; }
+        .btn[disabled] { opacity: .5; cursor: not-allowed; transform: none; }
+        .header-btn { padding: 0.6rem 1.1rem; font-size: 0.72rem; }
+
+        main { max-width: 860px; margin: 0 auto; padding: 4rem 5% 6rem; }
+        .meta-text { font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--accent); }
+        h1 { font-family: var(--font-heading); text-transform: uppercase; font-size: clamp(2.4rem, 7vw, 4.5rem); line-height: 1.05; margin: 0.5rem 0 1rem; letter-spacing: -0.01em; }
+        h1 span { color: var(--accent); }
+        .lead { color: var(--text-muted); max-width: 60ch; margin: 0 0 2.5rem; }
+        .steps { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin: 0 0 3rem; padding: 0; list-style: none; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); }
+        .steps b { color: var(--accent); font-weight: 500; margin-right: 0.4rem; }
+
+        fieldset { border: 1px solid var(--border); background: var(--surface); padding: 1.75rem; margin: 0 0 1.5rem; min-width: 0; }
+        legend { font-family: var(--font-heading); text-transform: uppercase; font-size: 1.25rem; padding: 0 0.6rem; letter-spacing: 0.02em; }
+        legend small { color: var(--accent); font-family: var(--font-mono); font-size: 0.75rem; margin-right: 0.5rem; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+        .full { grid-column: 1 / -1; }
+        label { display: block; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 0.4rem; }
+        label i { color: var(--accent-sec); font-style: normal; }
+        input, select, textarea { width: 100%; background: var(--bg); border: 1px solid var(--border); color: var(--text-main); font-family: var(--font-mono); font-size: 0.95rem; padding: 0.8rem 0.9rem; border-radius: 0; }
+        textarea { min-height: 8rem; resize: vertical; }
+        input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); }
+        input[type=date] { color-scheme: dark; }
+        .hint { font-size: 0.72rem; color: var(--text-muted); margin: 0.4rem 0 0; }
+        .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+        .drop { border: 1px dashed #4a4944; padding: 2.25rem 1rem; text-align: center; cursor: pointer; transition: border-color .2s, background-color .2s; }
+        .drop:hover, .drop.over { border-color: var(--accent); background: rgba(231,168,62,0.05); }
+        .drop strong { display: block; font-family: var(--font-heading); text-transform: uppercase; font-size: 1.2rem; font-weight: 500; }
+        .drop span { font-size: 0.78rem; color: var(--text-muted); }
+        .files { list-style: none; margin: 1rem 0 0; padding: 0; }
+        .files li { border: 1px solid var(--border); padding: 0.7rem 0.9rem; margin-bottom: 0.5rem; font-size: 0.8rem; }
+        .frow { display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; }
+        .fname { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+        .fmeta { color: var(--text-muted); white-space: nowrap; flex: none; }
+        .fmeta button { background: none; border: 0; color: var(--accent-sec); font-family: inherit; font-size: inherit; cursor: pointer; padding: 0 0 0 0.75rem; text-transform: uppercase; }
+        .bar { height: 3px; background: var(--border); margin-top: 0.55rem; }
+        .bar i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .3s linear; }
+        li.done .bar i { background: var(--ok); }
+        li.fail .bar i { background: var(--accent-sec); }
+        li.fail .fmeta { color: var(--accent-sec); }
+
+        .actions { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-top: 2rem; }
+        .actions .btn-primary { padding: 1.1rem 2.2rem; font-size: 0.9rem; }
+        .msg { border: 1px solid var(--accent-sec); color: #f1b4ad; padding: 0.9rem 1rem; font-size: 0.85rem; margin-top: 1.5rem; }
+        .panel { border: 1px solid var(--border); background: var(--surface); padding: 2rem; }
+        .panel h2 { font-family: var(--font-heading); text-transform: uppercase; font-size: clamp(1.6rem, 4vw, 2.4rem); margin: 0 0 0.75rem; line-height: 1.1; }
+        .panel p { color: var(--text-muted); margin: 0 0 1.25rem; }
+        .total { display: flex; justify-content: space-between; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+        .total-bar { height: 6px; background: var(--border); margin-bottom: 1.5rem; }
+        .total-bar i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .3s linear; }
+        .warn { color: var(--accent); font-size: 0.8rem; }
+
+        .site-footer { padding: 3rem 5%; border-top: 1px solid var(--border); }
+        .footer-inner { display: flex; justify-content: space-between; align-items: center; max-width: 1600px; margin: 0 auto; flex-wrap: wrap; gap: 1.5rem; font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); }
+        .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+        .footer-links a:hover { color: var(--accent); }
+
+        @media (max-width: 700px) {
+            .desktop-nav { display: none; }
+            .grid { grid-template-columns: 1fr; }
+            fieldset { padding: 1.25rem; }
+            main { padding-top: 2.5rem; }
+            .footer-inner { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="/" class="brand">
+                <div class="logo-mark"><span class="playhead-line"></span></div>
+                <span class="wordmark">BK AUTHORITY MEDIA</span>
+            </a>
+            <nav class="desktop-nav">
+                <a href="/#work">SELECTED WORK</a>
+                <a href="/#services">SERVICES</a>
+                <a href="/pricing.html">PRICING</a>
+                <a href="/#contact">CONTACT</a>
+            </nav>
+            <a href="https://wa.me/94767794670?text=Hi%20BK%20Authority%20Media%2C%20I%27d%20like%20to%20discuss%20a%20video%20project." class="btn btn-primary header-btn" target="_blank" rel="noopener noreferrer">WHATSAPP</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- STEP 1: THE FORM -->
+        <section id="view-form">
+            <span class="meta-text">Start a project</span>
+            <h1>Send your footage.<br><span>We handle the edit.</span></h1>
+            <p class="lead">No account, no sign-up. Tell us what you need, attach your files, and we will reply on WhatsApp.</p>
+            <ol class="steps">
+                <li><b>01</b>Your details</li>
+                <li><b>02</b>The project</li>
+                <li><b>03</b>Upload footage</li>
+            </ol>
+
+            <form id="form" novalidate>
+                <fieldset>
+                    <legend><small>01</small>Your details</legend>
+                    <div class="grid">
+                        <div>
+                            <label for="name">Your name <i>*</i></label>
+                            <input id="name" name="name" autocomplete="name" maxlength="80" required>
+                        </div>
+                        <div>
+                            <label for="company">Business / brand</label>
+                            <input id="company" name="company" autocomplete="organization" maxlength="80">
+                        </div>
+                        <div>
+                            <label for="whatsapp">WhatsApp number <i>*</i></label>
+                            <input id="whatsapp" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="07X XXX XXXX or +94..." maxlength="30" required>
+                        </div>
+                        <div>
+                            <label for="email">Email</label>
+                            <input id="email" name="email" type="email" autocomplete="email" maxlength="120">
+                        </div>
+                        <div class="hp" aria-hidden="true">
+                            <label for="website">Leave this empty</label>
+                            <input id="website" name="website" tabindex="-1" autocomplete="off">
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend><small>02</small>The project</legend>
+                    <div class="grid">
+                        <div>
+                            <label for="videoType">Type of video</label>
+                            <select id="videoType" name="videoType">
+                                <option>Reels / Shorts / TikTok</option>
+                                <option>YouTube video</option>
+                                <option>Ad / promo video</option>
+                                <option>Talking head / podcast</option>
+                                <option>Event / wedding highlight</option>
+                                <option>Motion graphics</option>
+                                <option>Other / not sure</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="videoCount">How many videos?</label>
+                            <input id="videoCount" name="videoCount" inputmode="numeric" placeholder="e.g. 4" maxlength="40">
+                        </div>
+                        <div>
+                            <label for="speed">How fast do you need it?</label>
+                            <select id="speed" name="speed">
+                                <option>Standard (3-5 days)</option>
+                                <option>Fast (48 hours)</option>
+                                <option>Rush (24 hours)</option>
+                                <option>Flexible / no rush</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="deadline">Deadline (if any)</label>
+                            <input id="deadline" name="deadline" type="date">
+                        </div>
+                        <div class="full">
+                            <label for="description">What do you need? <i>*</i></label>
+                            <textarea id="description" name="description" maxlength="4000" required placeholder="Describe the video: style, length, captions, music, logo, where it will be posted, anything we must include or cut."></textarea>
+                        </div>
+                        <div class="full">
+                            <label for="references">Reference videos / links</label>
+                            <textarea id="references" name="references" maxlength="1500" style="min-height:4.5rem" placeholder="Paste links to videos you like, one per line."></textarea>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend><small>03</small>Upload footage</legend>
+                    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose files to upload">
+                        <strong>Drop files here or tap to choose</strong>
+                        <span>Videos, audio, logos, scripts. Large files are fine.</span>
+                    </div>
+                    <input id="picker" type="file" multiple hidden>
+                    <ul class="files" id="files"></ul>
+                    <div style="margin-top:1.25rem">
+                        <label for="footageLink">Already have the footage online? Paste the link instead</label>
+                        <input id="footageLink" name="footageLink" type="url" inputmode="url" placeholder="Google Drive / Dropbox / WeTransfer link" maxlength="500">
+                        <p class="hint">Not ready yet? Send the form now and share the footage later on WhatsApp.</p>
+                    </div>
+                </fieldset>
+
+                <div class="msg" id="error" role="alert" hidden></div>
+                <div class="actions">
+                    <button class="btn btn-primary" id="submit" type="submit">Send project</button>
+                    <span class="hint" id="submitHint"></span>
+                </div>
+            </form>
+        </section>
+
+        <!-- STEP 2: UPLOADING -->
+        <section id="view-upload" hidden>
+            <span class="meta-text">Uploading</span>
+            <h1>Sending your <span>footage.</span></h1>
+            <div class="panel">
+                <p>Your request is saved. <span class="warn">Keep this page open until the upload finishes.</span></p>
+                <div class="total"><span id="totalLabel">Starting…</span><span id="totalPct">0%</span></div>
+                <div class="total-bar"><i id="totalBar"></i></div>
+                <ul class="files" id="progress"></ul>
+            </div>
+        </section>
+
+        <!-- STEP 3: DONE -->
+        <section id="view-done" hidden>
+            <span class="meta-text">Received</span>
+            <h1>Got it. <span>Thank you.</span></h1>
+            <div class="panel">
+                <h2 id="doneTitle">Your project is in.</h2>
+                <p id="doneText">We will review everything and reply on WhatsApp shortly.</p>
+                <div class="msg" id="doneWarn" hidden></div>
+                <div class="actions">
+                    <a class="btn btn-wa" id="doneWa" target="_blank" rel="noopener noreferrer" href="#">Message us on WhatsApp</a>
+                    <a class="btn" href="/">Back to home</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <span>&copy; 2026 Banuka Kannangara (Pvt) Ltd · Operating as BK Authority Media</span>
+            <div class="footer-links">
+                <a href="/privacy-policy/">Privacy Policy</a>
+                <a href="/terms/">Terms</a>
+                <a href="/">Home</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    (function () {
+        // Backend: Google Apps Script web app (creates the Drive folder + ClickUp card).
+        var API = 'https://script.google.com/macros/s/AKfycbwuadNG5MkQN26zs9FqBuI3zUcE_uIWvpSQB9OtQxJ82Sgpvo8d45xfi-gUuin825evfQ/exec';
+        var WA_NUMBER = '94767794670';
+        var CHUNK = 8 * 1024 * 1024;   // must be a multiple of 256 KB
+        var PARALLEL = 2;
+
+        var $ = function (id) { return document.getElementById(id); };
+        var form = $('form'), picker = $('picker'), drop = $('drop');
+        var chosen = [];
+        var uploading = false;
+
+        function human(n) {
+            if (n >= 1073741824) return (n / 1073741824).toFixed(2) + ' GB';
+            if (n >= 1048576) return (n / 1048576).toFixed(1) + ' MB';
+            return Math.max(1, Math.round(n / 1024)) + ' KB';
+        }
+        function sleep(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+        function show(view) {
+            ['view-form', 'view-upload', 'view-done'].forEach(function (v) { $(v).hidden = v !== view; });
+            window.scrollTo(0, 0);
+        }
+        function fail(text) { var e = $('error'); e.textContent = text; e.hidden = !text; }
+
+        /* ----- choosing files ----- */
+        function renderChosen() {
+            var ul = $('files');
+            ul.textContent = '';
+            var total = 0;
+            chosen.forEach(function (file, i) {
+                total += file.size;
+                var li = document.createElement('li');
+                var row = document.createElement('div'); row.className = 'frow';
+                var name = document.createElement('span'); name.className = 'fname'; name.textContent = file.name;
+                var meta = document.createElement('span'); meta.className = 'fmeta'; meta.textContent = human(file.size);
+                var rm = document.createElement('button'); rm.type = 'button'; rm.textContent = 'Remove';
+                rm.addEventListener('click', function () { chosen.splice(i, 1); renderChosen(); });
+                meta.appendChild(rm); row.appendChild(name); row.appendChild(meta); li.appendChild(row); ul.appendChild(li);
+            });
+            $('submitHint').textContent = chosen.length ? chosen.length + ' file' + (chosen.length === 1 ? '' : 's') + ' · ' + human(total) : '';
+            $('submit').textContent = chosen.length ? 'Send project & upload' : 'Send project';
+        }
+        function addFiles(list) {
+            Array.prototype.forEach.call(list, function (f) {
+                if (!f.size) return;
+                var dup = chosen.some(function (c) { return c.name === f.name && c.size === f.size && c.lastModified === f.lastModified; });
+                if (!dup) chosen.push(f);
+            });
+            renderChosen();
+        }
+        drop.addEventListener('click', function () { picker.click(); });
+        drop.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); picker.click(); } });
+        picker.addEventListener('change', function () { addFiles(picker.files); picker.value = ''; });
+        ['dragenter', 'dragover'].forEach(function (t) { drop.addEventListener(t, function (e) { e.preventDefault(); drop.classList.add('over'); }); });
+        ['dragleave', 'drop'].forEach(function (t) { drop.addEventListener(t, function (e) { e.preventDefault(); drop.classList.remove('over'); }); });
+        drop.addEventListener('drop', function (e) { if (e.dataTransfer && e.dataTransfer.files) addFiles(e.dataTransfer.files); });
+        window.addEventListener('beforeunload', function (e) { if (uploading) { e.preventDefault(); e.returnValue = ''; } });
+
+        /* ----- talking to the backend ----- */
+        async function api(payload, tries) {
+            var lastErr;
+            for (var i = 0; i < (tries || 1); i++) {
+                try {
+                    // text/plain keeps this a "simple" cross-origin request (no preflight), which Apps Script needs
+                    var res = await fetch(API, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) });
+                    var data = await res.json();
+                    if (!data.ok) { var err = new Error(data.error || 'Something went wrong.'); err.final = true; throw err; }
+                    return data;
+                } catch (err) {
+                    if (err.final) throw err;
+                    lastErr = err;
+                    await sleep(1500 * (i + 1));
+                }
+            }
+            throw lastErr || new Error('Network error');
+        }
+
+        /* ----- uploading one file straight to Google Drive, in chunks, resuming on errors ----- */
+        async function committed(url, size) {
+            // ask Drive how many bytes it already has
+            var r = await fetch(url, { method: 'PUT', headers: { 'Content-Range': 'bytes */' + size } });
+            if (r.status === 200 || r.status === 201) return size;
+            if (r.status === 308) {
+                var range = r.headers.get('Range');
+                return range ? Number(range.split('-')[1]) + 1 : 0;
+            }
+            throw new Error('status ' + r.status);
+        }
+        async function uploadFile(session, file, onProgress) {
+            var init = await api({
+                action: 'initUpload', folderId: session.folderId, taskId: session.taskId, sig: session.sig,
+                name: file.name, size: file.size, mime: file.type, origin: location.origin
+            }, 3);
+            var url = init.uploadUrl, offset = 0, errors = 0;
+            while (offset < file.size) {
+                var end = Math.min(offset + CHUNK, file.size);
+                try {
+                    var r = await fetch(url, {
+                        method: 'PUT',
+                        headers: { 'Content-Range': 'bytes ' + offset + '-' + (end - 1) + '/' + file.size },
+                        body: file.slice(offset, end)
+                    });
+                    if (r.status === 200 || r.status === 201) { offset = file.size; }
+                    else if (r.status === 308) {
+                        var range = r.headers.get('Range');
+                        offset = range ? Number(range.split('-')[1]) + 1 : end;
+                    }
+                    else if (r.status >= 500 || r.status === 429) { throw new Error('status ' + r.status); }
+                    else { var e = new Error('Upload rejected (' + r.status + ')'); e.final = true; throw e; }
+                    errors = 0;
+                    onProgress(offset);
+                } catch (err) {
+                    if (err.final || ++errors > 8) throw err;
+                    await sleep(Math.min(30000, 2000 * errors));
+                    try { offset = await committed(url, file.size); onProgress(offset); } catch (ignore) { /* retry the same chunk */ }
+                }
+            }
+        }
+
+        async function uploadAll(session) {
+            var rows = [], sent = [], failed = [];
+            var total = chosen.reduce(function (s, f) { return s + f.size; }, 0);
+            var ul = $('progress'); ul.textContent = '';
+            chosen.forEach(function (file, i) {
+                var li = document.createElement('li');
+                var row = document.createElement('div'); row.className = 'frow';
+                var name = document.createElement('span'); name.className = 'fname'; name.textContent = file.name;
+                var meta = document.createElement('span'); meta.className = 'fmeta'; meta.textContent = 'Waiting';
+                var bar = document.createElement('div'); bar.className = 'bar';
+                var fill = document.createElement('i'); bar.appendChild(fill);
+                row.appendChild(name); row.appendChild(meta); li.appendChild(row); li.appendChild(bar); ul.appendChild(li);
+                rows[i] = { li: li, meta: meta, fill: fill }; sent[i] = 0;
+            });
+            function paint() {
+                var done = sent.reduce(function (s, n) { return s + n; }, 0);
+                var pct = total ? Math.floor(done / total * 100) : 100;
+                $('totalPct').textContent = pct + '%';
+                $('totalBar').style.width = pct + '%';
+                $('totalLabel').textContent = human(done) + ' of ' + human(total);
+            }
+            paint();
+            var next = 0;
+            async function worker() {
+                while (next < chosen.length) {
+                    var i = next++, file = chosen[i], row = rows[i];
+                    row.meta.textContent = '0%';
+                    try {
+                        await uploadFile(session, file, function (bytes) {
+                            sent[i] = bytes;
+                            var p = Math.floor(bytes / file.size * 100);
+                            row.meta.textContent = p + '%'; row.fill.style.width = p + '%';
+                            paint();
+                        });
+                        row.li.className = 'done'; row.meta.textContent = 'Done · ' + human(file.size); row.fill.style.width = '100%';
+                    } catch (err) {
+                        failed.push(file.name);
+                        row.li.className = 'fail'; row.fill.style.width = '100%';
+                        row.meta.textContent = err.message === 'STORAGE_FULL' ? 'Too large right now' : 'Failed';
+                        sent[i] = file.size; paint();
+                    }
+                }
+            }
+            var workers = [];
+            for (var w = 0; w < Math.min(PARALLEL, chosen.length); w++) workers.push(worker());
+            await Promise.all(workers);
+            return failed;
+        }
+
+        /* ----- submit ----- */
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            fail('');
+            var v = function (id) { return $(id).value.trim(); };
+            if (!v('name')) { fail('Please enter your name.'); $('name').focus(); return; }
+            if (v('whatsapp').replace(/\D/g, '').length < 9) { fail('Please enter your WhatsApp number.'); $('whatsapp').focus(); return; }
+            if (v('email') && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v('email'))) { fail('Please check the email address.'); $('email').focus(); return; }
+            if (!v('description')) { fail('Please describe what you need.'); $('description').focus(); return; }
+
+            var btn = $('submit');
+            btn.disabled = true; btn.textContent = 'Sending…';
+            var session;
+            try {
+                session = await api({
+                    action: 'create',
+                    name: v('name'), company: v('company'), whatsapp: v('whatsapp'), email: v('email'),
+                    videoType: v('videoType'), videoCount: v('videoCount'), speed: v('speed'), deadline: v('deadline'),
+                    description: v('description'), references: v('references'), footageLink: v('footageLink'),
+                    website: $('website').value, willUpload: chosen.length > 0
+                });
+            } catch (err) {
+                btn.disabled = false; renderChosen();
+                fail((err.final ? err.message : 'Could not send. Check your internet connection and try again.') + ' You can also message us on WhatsApp.');
+                return;
+            }
+
+            var failed = [];
+            if (chosen.length) {
+                show('view-upload');
+                uploading = true;
+                try { failed = await uploadAll(session); } catch (err) { failed = chosen.map(function (f) { return f.name; }); }
+                uploading = false;
+                try { await api({ action: 'done', folderId: session.folderId, taskId: session.taskId, sig: session.sig, failed: failed }, 3); } catch (ignore) {}
+            }
+
+            var okCount = chosen.length - failed.length;
+            $('doneTitle').textContent = chosen.length
+                ? (failed.length ? okCount + ' of ' + chosen.length + ' files received.' : 'Your project and ' + okCount + ' file' + (okCount === 1 ? '' : 's') + ' are in.')
+                : 'Your project is in.';
+            if (failed.length) {
+                $('doneWarn').hidden = false;
+                $('doneWarn').textContent = 'These files did not upload: ' + failed.join(', ') + '. Please send them on WhatsApp or share a Drive link.';
+            }
+            $('doneWa').href = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(
+                'Hi BK Authority Media, I just sent a project request on your website. Name: ' + v('name') + '.');
+            show('view-done');
+        });
+    })();
+    </script>
+</body>
+</html>
