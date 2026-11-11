@@ -1,115 +1,155 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="si">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Start a Project | BK Authority Media</title>
-    <meta name="description" content="Tell BK Authority Media about your video project and upload your footage. No account needed.">
+    <title>Footage එවන්න | BK Authority Media</title>
+    <meta name="description" content="ඔයාගේ video footage එක BK Authority Media වෙත එවන්න. Account එකක් ඕන නෑ. පියවර 3කින් footage upload කරලා edit එක පටන් ගන්න.">
     <link rel="canonical" href="https://bkauthoritymedia.com/start/">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@400;500;700&family=Oswald:wght@500;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 
     <style>
         :root {
             --bg: #0B0B0B;
             --surface: #121212;
             --text-main: #EDE9DF;
-            --text-muted: #9D9A91;
+            --text-muted: #A8A59B;
             --accent: #E7A83E;
             --accent-sec: #D45B4F;
             --ok: #25D366;
             --border: #2B2B29;
-            --font-heading: 'Oswald', sans-serif;
-            --font-mono: 'Roboto Mono', monospace;
+            --font-heading: 'Oswald', 'Noto Sans Sinhala', sans-serif;
+            --font-body: 'Roboto Mono', 'Noto Sans Sinhala', monospace;
         }
         *, *::before, *::after { box-sizing: border-box; }
-        body { background: var(--bg); color: var(--text-main); font-family: var(--font-mono); margin: 0; line-height: 1.5; }
+        body { background: var(--bg); color: var(--text-main); font-family: var(--font-body); margin: 0; line-height: 1.7; }
         a { color: inherit; text-decoration: none; }
         [hidden] { display: none !important; }
 
         .site-header { position: sticky; top: 0; background: rgba(11,11,11,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); z-index: 100; }
-        .header-inner { display: flex; justify-content: space-between; align-items: center; padding: 1rem 5%; max-width: 1600px; margin: 0 auto; gap: 1rem; }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; padding: 0.9rem 5%; max-width: 1600px; margin: 0 auto; gap: 1rem; }
         .brand { display: flex; align-items: center; gap: 0.75rem; }
         .logo-mark { width: 24px; height: 24px; border: 2px solid var(--text-main); display: flex; align-items: center; justify-content: center; flex: none; }
         .playhead-line { width: 2px; height: 12px; background: var(--accent); }
         .wordmark { font-family: var(--font-heading); letter-spacing: 0.05em; font-size: 1.05rem; }
         .desktop-nav { display: flex; gap: 2rem; }
-        .desktop-nav a { font-size: 0.75rem; color: var(--text-muted); }
+        .desktop-nav a { font-size: 0.8rem; color: var(--text-muted); }
         .desktop-nav a:hover { color: var(--text-main); }
 
-        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.9rem 1.6rem; font-family: var(--font-mono); font-size: 0.8rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; border: 1px solid var(--border); background: transparent; color: var(--text-main); transition: transform .2s ease-out, background-color .2s ease-out, border-color .2s ease-out; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.9rem 1.6rem; font-family: var(--font-body); font-size: 0.9rem; font-weight: 500; cursor: pointer; border: 1px solid var(--border); background: transparent; color: var(--text-main); transition: transform .2s ease-out, background-color .2s ease-out, border-color .2s ease-out; }
         .btn:hover { transform: translateY(-2px); border-color: var(--text-main); }
-        .btn-primary { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+        .btn-primary { background: var(--accent); color: var(--bg); border-color: var(--accent); font-weight: 700; }
         .btn-primary:hover { background: #f0b95c; border-color: #f0b95c; }
-        .btn-wa { background: var(--ok); border-color: var(--ok); color: #06240f; }
+        .btn-wa { background: var(--ok); border-color: var(--ok); color: #06240f; font-weight: 700; }
         .btn-wa:hover { background: #3be07a; border-color: #3be07a; }
         .btn[disabled] { opacity: .5; cursor: not-allowed; transform: none; }
-        .header-btn { padding: 0.6rem 1.1rem; font-size: 0.72rem; }
+        .header-btn { padding: 0.55rem 1rem; font-size: 0.75rem; }
+        .btn-big { padding: 1.1rem 2.2rem; font-size: 1.05rem; }
 
-        main { max-width: 860px; margin: 0 auto; padding: 4rem 5% 6rem; }
-        .meta-text { font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--accent); }
-        h1 { font-family: var(--font-heading); text-transform: uppercase; font-size: clamp(2.4rem, 7vw, 4.5rem); line-height: 1.05; margin: 0.5rem 0 1rem; letter-spacing: -0.01em; }
+        main { max-width: 820px; margin: 0 auto; padding: 3rem 5% 6rem; }
+        .eyebrow { font-size: 0.8rem; letter-spacing: 0.05em; color: var(--accent); }
+        h1 { font-family: var(--font-heading); font-size: clamp(2rem, 6.2vw, 3.6rem); line-height: 1.3; margin: 0.4rem 0 0.8rem; font-weight: 700; }
         h1 span { color: var(--accent); }
-        .lead { color: var(--text-muted); max-width: 60ch; margin: 0 0 2.5rem; }
-        .steps { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin: 0 0 3rem; padding: 0; list-style: none; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); }
-        .steps b { color: var(--accent); font-weight: 500; margin-right: 0.4rem; }
+        .lead { color: var(--text-muted); max-width: 56ch; margin: 0 0 2rem; font-size: 1rem; }
 
-        fieldset { border: 1px solid var(--border); background: var(--surface); padding: 1.75rem; margin: 0 0 1.5rem; min-width: 0; }
-        legend { font-family: var(--font-heading); text-transform: uppercase; font-size: 1.25rem; padding: 0 0.6rem; letter-spacing: 0.02em; }
-        legend small { color: var(--accent); font-family: var(--font-mono); font-size: 0.75rem; margin-right: 0.5rem; }
+        /* step indicator */
+        .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; margin: 0 0 1.75rem; padding: 0; list-style: none; }
+        .steps li { border-top: 3px solid var(--border); padding-top: 0.6rem; font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; }
+        .steps b { display: block; font-family: var(--font-heading); font-size: 1.1rem; font-weight: 500; }
+        .steps li.on { border-color: var(--accent); color: var(--text-main); }
+        .steps li.on b { color: var(--accent); }
+        .steps li.past { border-color: var(--ok); }
+        .steps li.past b { color: var(--ok); }
+
+        .card { border: 1px solid var(--border); background: var(--surface); padding: 1.75rem; }
+        .card h2 { font-family: var(--font-heading); font-size: 1.5rem; margin: 0 0 0.75rem; line-height: 1.4; font-weight: 500; }
+        .guide { border-left: 3px solid var(--accent); background: rgba(231,168,62,0.07); padding: 0.9rem 1.1rem; margin: 0 0 1.5rem; font-size: 0.92rem; }
+        .guide ol, .guide ul { margin: 0; padding-left: 1.3rem; }
+        .guide li { margin-bottom: 0.3rem; }
+        .guide b { color: var(--accent); font-weight: 500; }
         .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
         .full { grid-column: 1 / -1; }
-        label { display: block; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 0.4rem; }
+        label { display: block; font-size: 0.88rem; color: var(--text-main); margin-bottom: 0.4rem; }
         label i { color: var(--accent-sec); font-style: normal; }
-        input, select, textarea { width: 100%; background: var(--bg); border: 1px solid var(--border); color: var(--text-main); font-family: var(--font-mono); font-size: 0.95rem; padding: 0.8rem 0.9rem; border-radius: 0; }
-        textarea { min-height: 8rem; resize: vertical; }
+        label small { color: var(--text-muted); font-size: 0.8rem; }
+        input, select, textarea { width: 100%; background: var(--bg); border: 1px solid #3a3a37; color: var(--text-main); font-family: var(--font-body); font-size: 1rem; padding: 0.85rem 0.9rem; border-radius: 0; line-height: 1.5; }
+        textarea { min-height: 9rem; resize: vertical; }
         input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); }
         input[type=date] { color-scheme: dark; }
-        .hint { font-size: 0.72rem; color: var(--text-muted); margin: 0.4rem 0 0; }
+        ::placeholder { color: #6f6d66; }
+        .hint { font-size: 0.82rem; color: var(--text-muted); margin: 0.5rem 0 0; }
         .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 
-        .drop { border: 1px dashed #4a4944; padding: 2.25rem 1rem; text-align: center; cursor: pointer; transition: border-color .2s, background-color .2s; }
-        .drop:hover, .drop.over { border-color: var(--accent); background: rgba(231,168,62,0.05); }
-        .drop strong { display: block; font-family: var(--font-heading); text-transform: uppercase; font-size: 1.2rem; font-weight: 500; }
-        .drop span { font-size: 0.78rem; color: var(--text-muted); }
+        .drop { border: 2px dashed #5a5850; padding: 2.25rem 1rem; text-align: center; cursor: pointer; transition: border-color .2s, background-color .2s; }
+        .drop:hover, .drop.over { border-color: var(--accent); background: rgba(231,168,62,0.06); }
+        .drop strong { display: block; font-family: var(--font-heading); font-size: 1.3rem; font-weight: 500; color: var(--accent); line-height: 1.5; }
+        .drop span { font-size: 0.85rem; color: var(--text-muted); }
+        .limits { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.9rem 0 0; padding: 0; list-style: none; font-size: 0.78rem; color: var(--text-muted); }
+        .limits li { border: 1px solid var(--border); padding: 0.25rem 0.6rem; }
         .files { list-style: none; margin: 1rem 0 0; padding: 0; }
-        .files li { border: 1px solid var(--border); padding: 0.7rem 0.9rem; margin-bottom: 0.5rem; font-size: 0.8rem; }
+        .files li { border: 1px solid var(--border); padding: 0.7rem 0.9rem; margin-bottom: 0.5rem; font-size: 0.85rem; }
         .frow { display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; }
         .fname { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
         .fmeta { color: var(--text-muted); white-space: nowrap; flex: none; }
-        .fmeta button { background: none; border: 0; color: var(--accent-sec); font-family: inherit; font-size: inherit; cursor: pointer; padding: 0 0 0 0.75rem; text-transform: uppercase; }
+        .fmeta button { background: none; border: 0; color: var(--accent-sec); font-family: inherit; font-size: inherit; cursor: pointer; padding: 0 0 0 0.75rem; }
         .bar { height: 3px; background: var(--border); margin-top: 0.55rem; }
         .bar i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .3s linear; }
         li.done .bar i { background: var(--ok); }
+        li.done .fmeta { color: var(--ok); }
         li.fail .bar i { background: var(--accent-sec); }
-        li.fail .fmeta { color: var(--accent-sec); }
+        li.fail .fmeta { color: var(--accent-sec); white-space: normal; text-align: right; }
 
-        .actions { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-top: 2rem; }
-        .actions .btn-primary { padding: 1.1rem 2.2rem; font-size: 0.9rem; }
-        .msg { border: 1px solid var(--accent-sec); color: #f1b4ad; padding: 0.9rem 1rem; font-size: 0.85rem; margin-top: 1.5rem; }
-        .panel { border: 1px solid var(--border); background: var(--surface); padding: 2rem; }
-        .panel h2 { font-family: var(--font-heading); text-transform: uppercase; font-size: clamp(1.6rem, 4vw, 2.4rem); margin: 0 0 0.75rem; line-height: 1.1; }
-        .panel p { color: var(--text-muted); margin: 0 0 1.25rem; }
-        .total { display: flex; justify-content: space-between; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
-        .total-bar { height: 6px; background: var(--border); margin-bottom: 1.5rem; }
+        .actions { display: flex; flex-wrap: wrap; gap: 0.9rem; align-items: center; margin-top: 1.75rem; }
+        .actions .spacer { flex: 1; }
+        .msg { border: 1px solid var(--accent-sec); color: #f3bdb6; padding: 0.9rem 1rem; font-size: 0.9rem; margin-top: 1.25rem; white-space: pre-line; }
+        .total { display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 0.5rem; }
+        .total-bar { height: 8px; background: var(--border); margin-bottom: 1.5rem; }
         .total-bar i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .3s linear; }
-        .warn { color: var(--accent); font-size: 0.8rem; }
+        .warn { color: var(--accent); }
+        .next { margin: 1rem 0 0; padding-left: 1.3rem; color: var(--text-muted); }
+        .next li { margin-bottom: 0.4rem; }
+        .safe { font-size: 0.82rem; color: var(--text-muted); margin-top: 1.25rem; }
+        .price-strip { margin: -1rem 0 2rem; font-size: 0.9rem; color: var(--text-muted); }
+        .price-strip b { color: var(--accent); }
+        .price-strip a { color: var(--text-main); border-bottom: 1px solid var(--accent); }
+        .checks { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .checks label { display: inline-flex; align-items: center; gap: 0.45rem; border: 1px solid #3a3a37; padding: 0.5rem 0.8rem; margin: 0; cursor: pointer; font-size: 0.88rem; }
+        .checks input { width: auto; accent-color: var(--accent); margin: 0; }
+        .optional { color: var(--text-muted); font-size: 0.85rem; margin: -0.75rem 0 1.25rem; }
 
-        .site-footer { padding: 3rem 5%; border-top: 1px solid var(--border); }
-        .footer-inner { display: flex; justify-content: space-between; align-items: center; max-width: 1600px; margin: 0 auto; flex-wrap: wrap; gap: 1.5rem; font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); }
+        .site-footer { padding: 2.5rem 5%; border-top: 1px solid var(--border); }
+        .footer-inner { display: flex; justify-content: space-between; align-items: center; max-width: 1600px; margin: 0 auto; flex-wrap: wrap; gap: 1.5rem; font-size: 0.75rem; color: var(--text-muted); }
         .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
         .footer-links a:hover { color: var(--accent); }
 
         @media (max-width: 700px) {
             .desktop-nav { display: none; }
             .grid { grid-template-columns: 1fr; }
-            fieldset { padding: 1.25rem; }
-            main { padding-top: 2.5rem; }
+            .card { padding: 1.25rem; }
+            main { padding-top: 2rem; }
+            .actions .btn-primary { width: 100%; order: -1; }
+            .actions .spacer { display: none; }
             .footer-inner { flex-direction: column; text-align: center; }
         }
     </style>
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '2157128921529692');
+    fbq('track', 'PageView');
+    </script>
+    <!-- End Meta Pixel Code -->
 </head>
 <body>
     <header class="site-header">
@@ -119,45 +159,50 @@
                 <span class="wordmark">BK AUTHORITY MEDIA</span>
             </a>
             <nav class="desktop-nav">
-                <a href="/#work">SELECTED WORK</a>
-                <a href="/#services">SERVICES</a>
-                <a href="/pricing.html">PRICING</a>
-                <a href="/#contact">CONTACT</a>
+                <a href="/#work">අපේ වැඩ</a>
+                <a href="/#services">Services</a>
+                <a href="/pricing.html">Prices</a>
+                <a href="/#contact">Contact</a>
             </nav>
-            <a href="https://wa.me/94767794670?text=Hi%20BK%20Authority%20Media%2C%20I%27d%20like%20to%20discuss%20a%20video%20project." class="btn btn-primary header-btn" target="_blank" rel="noopener noreferrer">WHATSAPP</a>
+            <a href="https://wa.me/94767794670?text=Hi%20BK%20Authority%20Media%2C%20I%27d%20like%20to%20discuss%20a%20video%20project." class="btn btn-wa header-btn" target="_blank" rel="noopener noreferrer">WhatsApp</a>
         </div>
     </header>
 
     <main>
-        <!-- STEP 1: THE FORM -->
+        <!-- THE GUIDED FORM -->
         <section id="view-form">
-            <span class="meta-text">Start a project</span>
-            <h1>Send your footage.<br><span>We handle the edit.</span></h1>
-            <p class="lead">No account, no sign-up. Tell us what you need, attach your files, and we will reply on WhatsApp.</p>
-            <ol class="steps">
-                <li><b>01</b>Your details</li>
-                <li><b>02</b>The project</li>
-                <li><b>03</b>Upload footage</li>
+            <span class="eyebrow">FOOTAGE එවන්න</span>
+            <h1>ඔයාගේ footage එක එවන්න.<br><span>Edit එක අපි බලාගන්නම්.</span></h1>
+            <p class="lead">Account හදන්න ඕන නෑ. Login වෙන්න ඕනත් නෑ. පියවර 4යි, විනාඩි 3කින් ඉවරයි.</p>
+            <p class="price-strip">Standard video edit එකක් <b id="fromPrice">LKR 1,000</b> සිට. <a href="/#pricing">Prices ඔක්කොම බලන්න →</a></p>
+
+            <ol class="steps" id="steps">
+                <li class="on"><b>01</b>ඔයාගේ විස්තර</li>
+                <li><b>02</b>Video එක ගැන</li>
+                <li><b>03</b>Brand / Style</li>
+                <li><b>04</b>Footage upload</li>
             </ol>
 
             <form id="form" novalidate>
-                <fieldset>
-                    <legend><small>01</small>Your details</legend>
+                <!-- STEP 1 -->
+                <div class="card" data-step="1">
+                    <h2>පියවර 1: ඔයාගේ විස්තර</h2>
+                    <div class="guide">මුලින්ම ඔයාව contact කරගන්න විස්තර ටික දෙන්න. අපි reply කරන්නේ <b>WhatsApp</b> එකෙන්, ඒ නිසා WhatsApp තියෙන number එකම දෙන්න.</div>
                     <div class="grid">
                         <div>
-                            <label for="name">Your name <i>*</i></label>
-                            <input id="name" name="name" autocomplete="name" maxlength="80" required>
+                            <label for="name">ඔයාගේ නම <i>*</i></label>
+                            <input id="name" name="name" autocomplete="name" maxlength="80">
                         </div>
                         <div>
-                            <label for="company">Business / brand</label>
+                            <label for="company">Business / Brand එකේ නම</label>
                             <input id="company" name="company" autocomplete="organization" maxlength="80">
                         </div>
                         <div>
-                            <label for="whatsapp">WhatsApp number <i>*</i></label>
-                            <input id="whatsapp" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="07X XXX XXXX or +94..." maxlength="30" required>
+                            <label for="whatsapp">WhatsApp number එක <i>*</i></label>
+                            <input id="whatsapp" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="07X XXX XXXX" maxlength="30">
                         </div>
                         <div>
-                            <label for="email">Email</label>
+                            <label for="email">Email <small>(තිබ්බොත්)</small></label>
                             <input id="email" name="email" type="email" autocomplete="email" maxlength="120">
                         </div>
                         <div class="hp" aria-hidden="true">
@@ -165,97 +210,206 @@
                             <input id="website" name="website" tabindex="-1" autocomplete="off">
                         </div>
                     </div>
-                </fieldset>
+                </div>
 
-                <fieldset>
-                    <legend><small>02</small>The project</legend>
+                <!-- STEP 2 -->
+                <div class="card" data-step="2" hidden>
+                    <h2>පියවර 2: Video එක ගැන කියන්න</h2>
+                    <div class="guide">ඔයාට ඕන video එක ගැන කියන්න. හරියටම දන්නේ නැත්නම් අවුලක් නෑ. දන්න ටික ලියන්න, ඉතුරු ටික අපි WhatsApp එකෙන් අහගන්නම්.</div>
                     <div class="grid">
                         <div>
-                            <label for="videoType">Type of video</label>
+                            <label for="videoType">මොන වගේ video එකක්ද?</label>
                             <select id="videoType" name="videoType">
-                                <option>Reels / Shorts / TikTok</option>
-                                <option>YouTube video</option>
-                                <option>Ad / promo video</option>
-                                <option>Talking head / podcast</option>
-                                <option>Event / wedding highlight</option>
-                                <option>Motion graphics</option>
-                                <option>Other / not sure</option>
+                                <option value="Reels / Shorts / TikTok">Reels / Shorts / TikTok</option>
+                                <option value="YouTube video">YouTube video</option>
+                                <option value="Ad / promo video">Ad / Promo video</option>
+                                <option value="Talking head / podcast">Talking head / Podcast</option>
+                                <option value="Event / wedding highlight">Event / Wedding highlight</option>
+                                <option value="Motion graphics">Motion graphics</option>
+                                <option value="Other / not sure">වෙන එකක් / හරියටම දන්නේ නෑ</option>
                             </select>
                         </div>
                         <div>
-                            <label for="videoCount">How many videos?</label>
-                            <input id="videoCount" name="videoCount" inputmode="numeric" placeholder="e.g. 4" maxlength="40">
+                            <label for="videoCount">Videos කීයක් ඕනද?</label>
+                            <input id="videoCount" name="videoCount" inputmode="numeric" placeholder="උදා: 4" maxlength="40">
                         </div>
                         <div>
-                            <label for="speed">How fast do you need it?</label>
+                            <label for="speed">කොච්චර ඉක්මනට ඕනද?</label>
                             <select id="speed" name="speed">
-                                <option>Standard (3-5 days)</option>
-                                <option>Fast (48 hours)</option>
-                                <option>Rush (24 hours)</option>
-                                <option>Flexible / no rush</option>
+                                <option value="Standard (3-5 days)">සාමාන්‍ය විදිහට (දවස් 3-5)</option>
+                                <option value="Fast (48 hours)">ඉක්මනට (පැය 48)</option>
+                                <option value="Rush (24 hours)">හදිස්සියි (පැය 24)</option>
+                                <option value="Flexible / no rush">හදිස්සියක් නෑ</option>
                             </select>
                         </div>
                         <div>
-                            <label for="deadline">Deadline (if any)</label>
+                            <label for="deadline">Deadline එකක් තියෙනවද? <small>(තිබ්බොත්)</small></label>
                             <input id="deadline" name="deadline" type="date">
                         </div>
-                        <div class="full">
-                            <label for="description">What do you need? <i>*</i></label>
-                            <textarea id="description" name="description" maxlength="4000" required placeholder="Describe the video: style, length, captions, music, logo, where it will be posted, anything we must include or cut."></textarea>
+                        <div>
+                            <label for="videoLength">එක video එකක් කොච්චර දිගද?</label>
+                            <select id="videoLength" name="videoLength">
+                                <option value="Not sure">හරියටම දන්නේ නෑ</option>
+                                <option value="Under 30 seconds">තත්පර 30ට අඩු</option>
+                                <option value="30-60 seconds">තත්පර 30 - 60</option>
+                                <option value="1-3 minutes">විනාඩි 1 - 3</option>
+                                <option value="3-10 minutes">විනාඩි 3 - 10</option>
+                                <option value="Over 10 minutes">විනාඩි 10ට වැඩි</option>
+                            </select>
                         </div>
                         <div class="full">
-                            <label for="references">Reference videos / links</label>
-                            <textarea id="references" name="references" maxlength="1500" style="min-height:4.5rem" placeholder="Paste links to videos you like, one per line."></textarea>
+                            <label>Video එක දාන්නේ කොහෙද? <small>(ඕන ගානක් තෝරන්න)</small></label>
+                            <div class="checks" id="platforms">
+                                <label><input type="checkbox" value="Facebook"> Facebook</label>
+                                <label><input type="checkbox" value="Instagram"> Instagram</label>
+                                <label><input type="checkbox" value="TikTok"> TikTok</label>
+                                <label><input type="checkbox" value="YouTube"> YouTube</label>
+                                <label><input type="checkbox" value="WhatsApp"> WhatsApp</label>
+                                <label><input type="checkbox" value="Ads"> Paid ads</label>
+                            </div>
+                        </div>
+                        <div class="full">
+                            <label for="description">ඔයාට ඕන මොකක්ද? <i>*</i></label>
+                            <textarea id="description" name="description" maxlength="4000" placeholder="Video එක කොහොමද වෙන්න ඕන කියලා ලියන්න: style එක, දිග, captions, music, logo, post කරන්නේ කොහෙද, අනිවාර්යයෙන් තියෙන්න ඕන දේවල්."></textarea>
+                            <p class="hint">සිංහලෙන්, English වලින්, Singlish වලින්, කැමති විදිහකට ලියන්න.</p>
+                        </div>
+                        <div class="full">
+                            <label for="references">ඔයා කැමති videos වල links <small>(තිබ්බොත්)</small></label>
+                            <textarea id="references" name="references" maxlength="1500" style="min-height:4.5rem" placeholder="මේ වගේ එකක් ඕන කියලා පෙන්නන්න පුළුවන් videos වල links මෙතන paste කරන්න."></textarea>
                         </div>
                     </div>
-                </fieldset>
+                </div>
 
-                <fieldset>
-                    <legend><small>03</small>Upload footage</legend>
-                    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose files to upload">
-                        <strong>Drop files here or tap to choose</strong>
-                        <span>Videos, audio, logos, scripts. Large files are fine.</span>
+                <!-- STEP 3 -->
+                <div class="card" data-step="3" hidden>
+                    <h2>පියවර 3: Brand එකයි style එකයි</h2>
+                    <div class="guide">ඔයාගේ brand එකට ගැළපෙන විදිහට video එක හදන්න මේ ටික උදව් වෙනවා. <b>කරන්න එපා කියන දේවල්</b> මෙතන කියලා තිබ්බොත්, පළවෙනි edit එකෙන්ම හරියන්න ඉඩ වැඩියි.</div>
+                    <p class="optional">මේ පියවරේ ඔක්කොම optional. දන්නේ නැති ඒවා හිස්ව තියලා ඊළඟට යන්න.</p>
+                    <div class="grid">
+                        <div>
+                            <label for="logo">Logo එකක් තියෙනවද?</label>
+                            <select id="logo" name="logo">
+                                <option value="Has a logo, uploading it with the footage">ඔව්, ඊළඟ පියවරේ upload කරනවා</option>
+                                <option value="Has a logo, will send it later on WhatsApp">ඔව්, පස්සේ WhatsApp එකෙන් එවනවා</option>
+                                <option value="No logo">Logo එකක් නෑ</option>
+                                <option value="No logo, wants one made">නෑ, එකක් හදලා ඕන</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="brand">Brand colours / fonts <small>(තිබ්බොත්)</small></label>
+                            <input id="brand" name="brand" maxlength="500" placeholder="උදා: රතුයි කළුයි, bold font එකක්">
+                        </div>
+                        <div>
+                            <label for="captions">Captions (subtitles) ඕනද?</label>
+                            <select id="captions" name="captions">
+                                <option value="Sinhala captions">සිංහල captions</option>
+                                <option value="English captions">English captions</option>
+                                <option value="Sinhala and English captions">සිංහල + English දෙකම</option>
+                                <option value="No captions">Captions එපා</option>
+                                <option value="Editor decides">ඔයාලම තීරණය කරන්න</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="music">Music එක කොහොමද ඕන?</label>
+                            <select id="music" name="music">
+                                <option value="Editor decides">ඔයාලම ගැළපෙන එකක් දාන්න</option>
+                                <option value="Trending music">Trending music</option>
+                                <option value="Energetic music">Energetic / fast</option>
+                                <option value="Calm music">Calm / soft</option>
+                                <option value="No music">Music එපා</option>
+                            </select>
+                        </div>
+                        <div class="full">
+                            <label for="endCard">Video එකේ පෙන්නන්න ඕන contact විස්තර <small>(phone number, address, website, offer එක)</small></label>
+                            <textarea id="endCard" name="endCard" maxlength="500" style="min-height:4.5rem" placeholder="උදා: 077 123 4567 · කොළඹ 05 · “අදම call කරන්න”"></textarea>
+                        </div>
+                        <div class="full">
+                            <label for="mustInclude">අනිවාර්යයෙන් තියෙන්න ඕන දේවල්</label>
+                            <textarea id="mustInclude" name="mustInclude" maxlength="2000" style="min-height:5.5rem" placeholder="උදා: Product එකේ close-up shots, price එක, මුලින්ම logo එක."></textarea>
+                        </div>
+                        <div class="full">
+                            <label for="dontDo">කරන්න එපා කියන දේවල්</label>
+                            <textarea id="dontDo" name="dontDo" maxlength="2000" style="min-height:5.5rem" placeholder="උදා: Loud music එපා. මගේ මූණ zoom කරන්න එපා. Emojis එපා. තරඟකාරයන්ගේ නම් කියන්න එපා."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 4 -->
+                <div class="card" data-step="4" hidden>
+                    <h2>පියවර 4: Footage එක upload කරන්න</h2>
+                    <div class="guide">
+                        <ol>
+                            <li>පහළ කොටුව <b>tap කරලා</b> ඔයාගේ videos, audio, <b>logo</b>, photos තෝරන්න.</li>
+                            <li><b>“Footage එවන්න”</b> button එක ඔබන්න.</li>
+                            <li>Upload එක ඉවර වෙනකම් <b>මේ page එක close කරන්න එපා</b>.</li>
+                        </ol>
+                    </div>
+                    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Files තෝරන්න">
+                        <strong>Files තෝරන්න මෙතන tap කරන්න</strong>
+                        <span>Videos, audio, photos, logo, scripts</span>
                     </div>
                     <input id="picker" type="file" multiple hidden>
+                    <ul class="limits">
+                        <li>එක file එකක් උපරිම 1 GB</li>
+                        <li>ඔක්කොම එකතුව උපරිම 10 GB</li>
+                        <li>ZIP / RAR බාරගන්නේ නෑ</li>
+                        <li>ලොකු files නම් WiFi එකෙන් එවන්න</li>
+                    </ul>
+                    <div class="msg" id="fileWarn" hidden></div>
                     <ul class="files" id="files"></ul>
-                    <div style="margin-top:1.25rem">
-                        <label for="footageLink">Already have the footage online? Paste the link instead</label>
-                        <input id="footageLink" name="footageLink" type="url" inputmode="url" placeholder="Google Drive / Dropbox / WeTransfer link" maxlength="500">
-                        <p class="hint">Not ready yet? Send the form now and share the footage later on WhatsApp.</p>
+                    <div style="margin-top:1.5rem">
+                        <label for="footageLink">Footage එක දැනටමත් Google Drive / Dropbox එකක තියෙනවද? Link එක මෙතන paste කරන්න</label>
+                        <input id="footageLink" name="footageLink" type="url" inputmode="url" placeholder="https://drive.google.com/..." maxlength="500">
+                        <p class="hint">Footage එක තාම ready නැද්ද? අවුලක් නෑ. දැන් form එක එවලා, footage එක පස්සේ WhatsApp එකෙන් එවන්න.</p>
                     </div>
-                </fieldset>
+                    <p class="safe">ඔයාගේ files ආරක්ෂිතයි. ඒවා කෙළින්ම යන්නේ අපේ private Google Drive එකට. අපේ team එකට විතරයි බලන්න පුළුවන්.</p>
+                </div>
 
                 <div class="msg" id="error" role="alert" hidden></div>
                 <div class="actions">
-                    <button class="btn btn-primary" id="submit" type="submit">Send project</button>
-                    <span class="hint" id="submitHint"></span>
+                    <button class="btn" id="back" type="button" hidden>← ආපසු</button>
+                    <span class="spacer"></span>
+                    <span class="hint" id="submitHint" style="margin:0"></span>
+                    <button class="btn btn-primary btn-big" id="next" type="submit">ඊළඟ පියවරට →</button>
                 </div>
             </form>
         </section>
 
-        <!-- STEP 2: UPLOADING -->
+        <!-- UPLOADING -->
         <section id="view-upload" hidden>
-            <span class="meta-text">Uploading</span>
-            <h1>Sending your <span>footage.</span></h1>
-            <div class="panel">
-                <p>Your request is saved. <span class="warn">Keep this page open until the upload finishes.</span></p>
-                <div class="total"><span id="totalLabel">Starting…</span><span id="totalPct">0%</span></div>
+            <span class="eyebrow">UPLOAD වෙනවා</span>
+            <h1>ඔයාගේ footage එක <span>upload වෙනවා.</span></h1>
+            <div class="card">
+                <div class="guide">
+                    <ul>
+                        <li>ඔයාගේ request එක අපිට ලැබුණා.</li>
+                        <li><b>Upload එක ඉවර වෙනකම් මේ page එක close කරන්න එපා.</b></li>
+                        <li>Phone එකේ screen එක off වෙන්න දෙන්න එපා. වෙන app එකකට යන්නත් එපා.</li>
+                    </ul>
+                </div>
+                <div class="total"><span id="totalLabel">පටන් ගන්නවා…</span><span id="totalPct">0%</span></div>
                 <div class="total-bar"><i id="totalBar"></i></div>
                 <ul class="files" id="progress"></ul>
             </div>
         </section>
 
-        <!-- STEP 3: DONE -->
+        <!-- DONE -->
         <section id="view-done" hidden>
-            <span class="meta-text">Received</span>
-            <h1>Got it. <span>Thank you.</span></h1>
-            <div class="panel">
-                <h2 id="doneTitle">Your project is in.</h2>
-                <p id="doneText">We will review everything and reply on WhatsApp shortly.</p>
-                <div class="msg" id="doneWarn" hidden></div>
+            <span class="eyebrow">ලැබුණා</span>
+            <h1>හරි! <span>ස්තූතියි.</span></h1>
+            <div class="card">
+                <h2 id="doneTitle">ඔයාගේ request එක අපිට ලැබුණා.</h2>
+                <div class="msg" id="doneWarn" hidden style="margin:0 0 1.25rem"></div>
+                <p style="margin:0">ඊළඟට වෙන්නේ මෙහෙමයි:</p>
+                <ol class="next">
+                    <li>අපි ඔයාගේ footage එකයි විස්තරයි බලනවා.</li>
+                    <li>Price එකයි, දෙන්න පුළුවන් දවසයි WhatsApp එකෙන් කියනවා.</li>
+                    <li>ඔයා OK කිව්වම edit එක පටන් ගන්නවා.</li>
+                    <li>Edit එක ඉවර වුණාම බලන්න එවනවා. වෙනස්කම් ඕන නම් කියන්න.</li>
+                </ol>
                 <div class="actions">
-                    <a class="btn btn-wa" id="doneWa" target="_blank" rel="noopener noreferrer" href="#">Message us on WhatsApp</a>
-                    <a class="btn" href="/">Back to home</a>
+                    <a class="btn btn-wa btn-big" id="doneWa" target="_blank" rel="noopener noreferrer" href="#">WhatsApp එකෙන් message එකක් දාන්න</a>
+                    <a class="btn" href="/">මුල් page එකට</a>
                 </div>
             </div>
         </section>
@@ -279,10 +433,35 @@
         var WA_NUMBER = '94767794670';
         var CHUNK = 8 * 1024 * 1024;   // must be a multiple of 256 KB
         var PARALLEL = 2;
+        var GB = 1024 * 1024 * 1024;
+        var MAX_FILE = 1 * GB, MAX_TOTAL = 10 * GB, MAX_COUNT = 100;
+        // Keep in step with ALLOWED_EXT in the Apps Script (the server checks again).
+        var ALLOWED = ('mp4 mov m4v mkv avi webm mts m2ts mxf 3gp wmv mpg mpeg ' +
+            'mp3 wav m4a aac ogg oga opus flac wma ' +
+            'jpg jpeg png webp heic heif gif bmp tif tiff psd ' +
+            'pdf txt srt vtt csv docx pptx xlsx').split(' ');
+
+        // Messages for error codes the server sends back.
+        var ERR = {
+            NEED_NAME: 'ඔයාගේ නම දාන්න.',
+            NEED_PHONE: 'හරි WhatsApp number එකක් දාන්න.',
+            BAD_EMAIL: 'Email address එක හරිද කියලා බලන්න.',
+            NEED_DESCRIPTION: 'ඔයාට ඕන මොකක්ද කියලා පොඩ්ඩක් ලියන්න.',
+            BUSY: 'දැන් requests ගොඩක් එනවා. පොඩ්ඩකින් ආයෙ try කරන්න, නැත්නම් WhatsApp එකෙන් message එකක් දාන්න.',
+            SESSION_EXPIRED: 'වෙලාව ඉවර වුණා',
+            TYPE_NOT_ALLOWED: 'මේ වර්ගයේ file බාරගන්නේ නෑ',
+            FILE_TOO_BIG: '1 GB ට වඩා ලොකුයි',
+            TOTAL_TOO_BIG: 'ඔක්කොම එකතුව 10 GB ට වැඩියි',
+            TOO_MANY_FILES: 'Files ගාන වැඩියි',
+            EMPTY_FILE: 'හිස් file එකක්',
+            STORAGE_FULL: 'දැන් upload කරන්න බෑ, WhatsApp එකෙන් එවන්න',
+            UPLOAD_START_FAILED: 'Upload එක පටන් ගන්න බැරි වුණා'
+        };
 
         var $ = function (id) { return document.getElementById(id); };
         var form = $('form'), picker = $('picker'), drop = $('drop');
         var chosen = [];
+        var step = 1, LAST = 4;
         var uploading = false;
 
         function human(n) {
@@ -295,32 +474,73 @@
             ['view-form', 'view-upload', 'view-done'].forEach(function (v) { $(v).hidden = v !== view; });
             window.scrollTo(0, 0);
         }
-        function fail(text) { var e = $('error'); e.textContent = text; e.hidden = !text; }
+        function fail(text) { var e = $('error'); e.textContent = text || ''; e.hidden = !text; }
+        function v(id) { return $(id).value.trim(); }
+
+        /* ----- moving between the three steps ----- */
+        function paintStep() {
+            Array.prototype.forEach.call(form.querySelectorAll('[data-step]'), function (el) {
+                el.hidden = Number(el.getAttribute('data-step')) !== step;
+            });
+            Array.prototype.forEach.call($('steps').children, function (li, i) {
+                li.className = i + 1 === step ? 'on' : (i + 1 < step ? 'past' : '');
+            });
+            $('back').hidden = step === 1;
+            paintButton();
+            fail('');
+        }
+        function paintButton() {
+            var total = chosen.reduce(function (s, f) { return s + f.size; }, 0);
+            $('submitHint').textContent = step === LAST && chosen.length ? 'Files ' + chosen.length + ' · ' + human(total) : '';
+            $('next').textContent = step < LAST ? 'ඊළඟ පියවරට →' : (chosen.length ? 'Footage එවන්න' : 'Request එක එවන්න');
+        }
+        function checkStep(n) {
+            if (n === 1) {
+                if (!v('name')) { fail(ERR.NEED_NAME); $('name').focus(); return false; }
+                if (v('whatsapp').replace(/\D/g, '').length < 9) { fail(ERR.NEED_PHONE); $('whatsapp').focus(); return false; }
+                if (v('email') && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v('email'))) { fail(ERR.BAD_EMAIL); $('email').focus(); return false; }
+            }
+            if (n === 2 && !v('description')) { fail(ERR.NEED_DESCRIPTION); $('description').focus(); return false; }
+            return true;
+        }
+        function go(n) {
+            step = n; paintStep();
+            $('steps').scrollIntoView({ block: 'start', behavior: 'smooth' });
+        }
+        $('back').addEventListener('click', function () { if (step > 1) go(step - 1); });
 
         /* ----- choosing files ----- */
         function renderChosen() {
             var ul = $('files');
             ul.textContent = '';
-            var total = 0;
             chosen.forEach(function (file, i) {
-                total += file.size;
                 var li = document.createElement('li');
                 var row = document.createElement('div'); row.className = 'frow';
                 var name = document.createElement('span'); name.className = 'fname'; name.textContent = file.name;
                 var meta = document.createElement('span'); meta.className = 'fmeta'; meta.textContent = human(file.size);
-                var rm = document.createElement('button'); rm.type = 'button'; rm.textContent = 'Remove';
+                var rm = document.createElement('button'); rm.type = 'button'; rm.textContent = 'අයින් කරන්න';
                 rm.addEventListener('click', function () { chosen.splice(i, 1); renderChosen(); });
                 meta.appendChild(rm); row.appendChild(name); row.appendChild(meta); li.appendChild(row); ul.appendChild(li);
             });
-            $('submitHint').textContent = chosen.length ? chosen.length + ' file' + (chosen.length === 1 ? '' : 's') + ' · ' + human(total) : '';
-            $('submit').textContent = chosen.length ? 'Send project & upload' : 'Send project';
+            paintButton();
         }
         function addFiles(list) {
+            var skipped = [];
+            var total = chosen.reduce(function (s, f) { return s + f.size; }, 0);
             Array.prototype.forEach.call(list, function (f) {
-                if (!f.size) return;
+                var ext = (/\.([a-z0-9]{1,5})$/i.exec(f.name) || [])[1];
+                var why = !f.size ? ERR.EMPTY_FILE
+                    : !ext || ALLOWED.indexOf(ext.toLowerCase()) === -1 ? ERR.TYPE_NOT_ALLOWED
+                    : f.size > MAX_FILE ? ERR.FILE_TOO_BIG
+                    : total + f.size > MAX_TOTAL ? ERR.TOTAL_TOO_BIG
+                    : chosen.length >= MAX_COUNT ? ERR.TOO_MANY_FILES : '';
+                if (why) { skipped.push(f.name + ' : ' + why); return; }
                 var dup = chosen.some(function (c) { return c.name === f.name && c.size === f.size && c.lastModified === f.lastModified; });
-                if (!dup) chosen.push(f);
+                if (!dup) { chosen.push(f); total += f.size; }
             });
+            var w = $('fileWarn');
+            w.hidden = !skipped.length;
+            w.textContent = skipped.length ? 'මේ files ගන්න බැරි වුණා:\n' + skipped.join('\n') : '';
             renderChosen();
         }
         drop.addEventListener('click', function () { picker.click(); });
@@ -339,7 +559,7 @@
                     // text/plain keeps this a "simple" cross-origin request (no preflight), which Apps Script needs
                     var res = await fetch(API, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) });
                     var data = await res.json();
-                    if (!data.ok) { var err = new Error(data.error || 'Something went wrong.'); err.final = true; throw err; }
+                    if (!data.ok) { var err = new Error(data.error || 'ERROR'); err.final = true; throw err; }
                     return data;
                 } catch (err) {
                     if (err.final) throw err;
@@ -347,7 +567,7 @@
                     await sleep(1500 * (i + 1));
                 }
             }
-            throw lastErr || new Error('Network error');
+            throw lastErr || new Error('NETWORK');
         }
 
         /* ----- uploading one file straight to Google Drive, in chunks, resuming on errors ----- */
@@ -363,7 +583,7 @@
         }
         async function uploadFile(session, file, onProgress) {
             var init = await api({
-                action: 'initUpload', folderId: session.folderId, taskId: session.taskId, sig: session.sig,
+                action: 'initUpload', folderId: session.folderId, taskId: session.taskId, exp: session.exp, sig: session.sig,
                 name: file.name, size: file.size, mime: file.type, origin: location.origin
             }, 3);
             var url = init.uploadUrl, offset = 0, errors = 0;
@@ -381,7 +601,7 @@
                         offset = range ? Number(range.split('-')[1]) + 1 : end;
                     }
                     else if (r.status >= 500 || r.status === 429) { throw new Error('status ' + r.status); }
-                    else { var e = new Error('Upload rejected (' + r.status + ')'); e.final = true; throw e; }
+                    else { var e = new Error('REJECTED'); e.final = true; throw e; }
                     errors = 0;
                     onProgress(offset);
                 } catch (err) {
@@ -400,7 +620,7 @@
                 var li = document.createElement('li');
                 var row = document.createElement('div'); row.className = 'frow';
                 var name = document.createElement('span'); name.className = 'fname'; name.textContent = file.name;
-                var meta = document.createElement('span'); meta.className = 'fmeta'; meta.textContent = 'Waiting';
+                var meta = document.createElement('span'); meta.className = 'fmeta'; meta.textContent = 'පෝලිමේ';
                 var bar = document.createElement('div'); bar.className = 'bar';
                 var fill = document.createElement('i'); bar.appendChild(fill);
                 row.appendChild(name); row.appendChild(meta); li.appendChild(row); li.appendChild(bar); ul.appendChild(li);
@@ -411,7 +631,7 @@
                 var pct = total ? Math.floor(done / total * 100) : 100;
                 $('totalPct').textContent = pct + '%';
                 $('totalBar').style.width = pct + '%';
-                $('totalLabel').textContent = human(done) + ' of ' + human(total);
+                $('totalLabel').textContent = human(total) + ' න් ' + human(done) + ' ගියා';
             }
             paint();
             var next = 0;
@@ -426,11 +646,11 @@
                             row.meta.textContent = p + '%'; row.fill.style.width = p + '%';
                             paint();
                         });
-                        row.li.className = 'done'; row.meta.textContent = 'Done · ' + human(file.size); row.fill.style.width = '100%';
+                        row.li.className = 'done'; row.meta.textContent = 'හරි ✓ ' + human(file.size); row.fill.style.width = '100%';
                     } catch (err) {
                         failed.push(file.name);
                         row.li.className = 'fail'; row.fill.style.width = '100%';
-                        row.meta.textContent = err.message === 'STORAGE_FULL' ? 'Too large right now' : 'Failed';
+                        row.meta.textContent = ERR[err.message] || 'Upload වුණේ නෑ';
                         sent[i] = file.size; paint();
                     }
                 }
@@ -441,18 +661,16 @@
             return failed;
         }
 
-        /* ----- submit ----- */
+        /* ----- next / submit ----- */
         form.addEventListener('submit', async function (e) {
             e.preventDefault();
             fail('');
-            var v = function (id) { return $(id).value.trim(); };
-            if (!v('name')) { fail('Please enter your name.'); $('name').focus(); return; }
-            if (v('whatsapp').replace(/\D/g, '').length < 9) { fail('Please enter your WhatsApp number.'); $('whatsapp').focus(); return; }
-            if (v('email') && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v('email'))) { fail('Please check the email address.'); $('email').focus(); return; }
-            if (!v('description')) { fail('Please describe what you need.'); $('description').focus(); return; }
+            if (step < LAST) { if (checkStep(step)) go(step + 1); return; }
+            if (!checkStep(1)) { step = 1; paintStep(); checkStep(1); return; }
+            if (!checkStep(2)) { step = 2; paintStep(); checkStep(2); return; }
 
-            var btn = $('submit');
-            btn.disabled = true; btn.textContent = 'Sending…';
+            var btn = $('next');
+            btn.disabled = true; $('back').disabled = true; btn.textContent = 'යවනවා…';
             var session;
             try {
                 session = await api({
@@ -460,35 +678,51 @@
                     name: v('name'), company: v('company'), whatsapp: v('whatsapp'), email: v('email'),
                     videoType: v('videoType'), videoCount: v('videoCount'), speed: v('speed'), deadline: v('deadline'),
                     description: v('description'), references: v('references'), footageLink: v('footageLink'),
+                    videoLength: v('videoLength'), logo: v('logo'), brand: v('brand'), captions: v('captions'), music: v('music'),
+                    endCard: v('endCard'), mustInclude: v('mustInclude'), dontDo: v('dontDo'),
+                    platforms: Array.prototype.map.call($('platforms').querySelectorAll('input:checked'), function (c) { return c.value; }).join(', '),
                     website: $('website').value, willUpload: chosen.length > 0
                 });
             } catch (err) {
-                btn.disabled = false; renderChosen();
-                fail((err.final ? err.message : 'Could not send. Check your internet connection and try again.') + ' You can also message us on WhatsApp.');
+                btn.disabled = false; $('back').disabled = false; paintButton();
+                fail(err.final ? (ERR[err.message] || 'යවන්න බැරි වුණා. WhatsApp එකෙන් message එකක් දාන්න.')
+                    : 'යවන්න බැරි වුණා. Internet connection එක බලලා ආයෙ try කරන්න.');
                 return;
             }
 
-            var failed = [];
+            var failed = [], blocked = [];
             if (chosen.length) {
                 show('view-upload');
                 uploading = true;
+                var wake = null;
+                try { if (navigator.wakeLock) wake = await navigator.wakeLock.request('screen'); } catch (ignore) {}
                 try { failed = await uploadAll(session); } catch (err) { failed = chosen.map(function (f) { return f.name; }); }
                 uploading = false;
-                try { await api({ action: 'done', folderId: session.folderId, taskId: session.taskId, sig: session.sig, failed: failed }, 3); } catch (ignore) {}
+                try { if (wake) wake.release(); } catch (ignore) {}
+                try {
+                    var d = await api({ action: 'done', folderId: session.folderId, taskId: session.taskId, exp: session.exp, sig: session.sig, failed: failed }, 3);
+                    blocked = d.blocked || [];
+                } catch (ignore) {}
             }
 
-            var okCount = chosen.length - failed.length;
-            $('doneTitle').textContent = chosen.length
-                ? (failed.length ? okCount + ' of ' + chosen.length + ' files received.' : 'Your project and ' + okCount + ' file' + (okCount === 1 ? '' : 's') + ' are in.')
-                : 'Your project is in.';
-            if (failed.length) {
-                $('doneWarn').hidden = false;
-                $('doneWarn').textContent = 'These files did not upload: ' + failed.join(', ') + '. Please send them on WhatsApp or share a Drive link.';
-            }
+            var okCount = chosen.length - failed.length - blocked.length;
+            $('doneTitle').textContent = !chosen.length ? 'ඔයාගේ request එක අපිට ලැබුණා.'
+                : (failed.length || blocked.length) ? 'Files ' + chosen.length + ' න් ' + okCount + ' ක් අපිට ලැබුණා.'
+                : 'ඔයාගේ request එකයි files ' + okCount + ' යි අපිට ලැබුණා.';
+            var warn = [];
+            if (failed.length) warn.push('මේ files upload වුණේ නෑ:\n' + failed.join('\n') + '\nඒවා WhatsApp එකෙන් එවන්න, නැත්නම් Drive link එකක් share කරන්න.');
+            if (blocked.length) warn.push('මේ files ආරක්ෂිත නැති නිසා බාරගත්තේ නෑ:\n' + blocked.join('\n'));
+            if (warn.length) { $('doneWarn').hidden = false; $('doneWarn').textContent = warn.join('\n\n'); }
             $('doneWa').href = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(
-                'Hi BK Authority Media, I just sent a project request on your website. Name: ' + v('name') + '.');
+                'Hi BK Authority Media, මම website එකෙන් footage එවුවා. නම: ' + v('name') + (v('company') ? ' (' + v('company') + ')' : '') + '.');
+            try { if (window.fbq) fbq('track', 'Lead'); } catch (ignore) {}
             show('view-done');
         });
+
+        // After the 30% offer ends (14 Nov 2026) show the regular price.
+        if (Date.now() > new Date('2026-11-14T23:59:59+05:30').getTime()) $('fromPrice').textContent = 'LKR 1,400';
+
+        paintStep();
     })();
     </script>
 </body>
