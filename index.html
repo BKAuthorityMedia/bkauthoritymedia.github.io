@@ -234,7 +234,23 @@
             .footer-inner { flex-direction: column; text-align: center; }
             .floating-wa { bottom: 1rem; right: 1rem; padding: 0.5rem 1rem; font-size: 0.7rem; }
         }
-    </style>
+
+        /* NEW SOCIAL & CAMPAIGN SHOWCASE */
+        .featured-reels { padding: 5rem 5%; max-width: 1600px; margin: 0 auto; }
+        .reels-intro { max-width: 680px; color: var(--text-muted); margin: 1.2rem 0 3rem; }
+        .reels-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1.4rem; align-items: start; }
+        .reel-card { min-width: 0; background: linear-gradient(145deg,#171612,#0d0d0c); border: 1px solid var(--border); overflow: hidden; transition: transform var(--transition-fast),border-color var(--transition-fast); }
+        .reel-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+        .reel-media { position: relative; width: 100%; aspect-ratio: 9/16; max-height: 620px; background: #000; overflow: hidden; }
+        .reel-media iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
+        .reel-copy { padding: 1.4rem 1.35rem 1.5rem; }
+        .reel-kicker { color:var(--accent); font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; }
+        .reel-copy h3 { font-family:var(--font-heading); text-transform:uppercase; font-size:1.5rem; line-height:1.15; margin:.6rem 0; }
+        .reel-copy p { color:var(--text-muted); font-size:.78rem; line-height:1.7; min-height:4.2em; }
+        .reel-link { display:inline-block; color:var(--accent); font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; border-bottom:1px solid var(--accent); padding-bottom:.25rem; }
+        @media(max-width:900px){.reels-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+        @media(max-width:600px){.featured-reels{padding:3.5rem 5%;}.reels-grid{grid-template-columns:1fr;gap:1.2rem}.reel-media{max-height:680px}.reel-copy p{min-height:0}}
+\n    </style>
 
     <!-- Meta Pixel Code -->
     <script>
@@ -273,7 +289,7 @@
             </a>
             <nav class="desktop-nav">
                 <a href="#work">SELECTED WORK</a>
-                <a href="#services">SERVICES</a>
+                <a href="#services">SERVICES</a>\n                <a href="#featured-work">MORE WORK</a>
                 <a href="/pricing.html">PRICING</a>
                 <a href="#contact">CONTACT</a>
             </nav>
@@ -430,6 +446,42 @@
                         <div class="timecode">PT. 2</div>
                     </a>
                 </div>
+            </article>
+        </div>
+    </section>
+
+
+    <!-- FEATURED SOCIAL & CAMPAIGN WORK -->
+    <section class="featured-reels" id="featured-work">
+        <div class="section-header fade-up">
+            <p class="meta-text">[ 02. SOCIAL / CAMPAIGN SHOWCASE ]</p>
+            <h2 class="headline-large">BUILT FOR THE FEED.<br><span class="accent-text">MADE TO BE REMEMBERED.</span></h2>
+            <p class="reels-intro">A selection of hospitality, education, brand identity and short-form social projects. Explore the edits directly below or open the original posts on their platforms.</p>
+        </div>
+        <div class="reels-grid">
+            <article class="reel-card fade-up">
+                <div class="reel-media"><iframe loading="lazy" src="https://player.vimeo.com/video/1245677472?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" title="Cafe and Restaurant Promotional Video" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+                <div class="reel-copy"><span class="reel-kicker">Hospitality / Promotional Editing</span><h3>Café & Restaurant Promo</h3><p>Food, ambience and venue storytelling designed to make cafés and restaurants stand out on social media.</p><a class="reel-link" href="https://vimeo.com/1245677472" target="_blank" rel="noopener">Watch on Vimeo ↗</a></div>
+            </article>
+            <article class="reel-card fade-up delay-1">
+                <div class="reel-media"><iframe loading="lazy" src="https://player.vimeo.com/video/1245677958?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" title="Economics Unit 4 Seminar Promotion" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+                <div class="reel-copy"><span class="reel-kicker">Education / Event Marketing</span><h3>Economics Seminar Promo</h3><p>A vertical promotional edit for an Economics Unit 4 seminar, built to communicate the event and encourage registrations.</p><a class="reel-link" href="https://vimeo.com/1245677958" target="_blank" rel="noopener">Watch on Vimeo ↗</a></div>
+            </article>
+            <article class="reel-card fade-up delay-2">
+                <div class="reel-media"><iframe loading="lazy" src="https://player.vimeo.com/video/1245678155?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" title="ChatBiz Logo Reveal" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+                <div class="reel-copy"><span class="reel-kicker">Motion Graphics / Brand Identity</span><h3>ChatBiz Logo Reveal</h3><p>A polished logo reveal animation designed to introduce a brand with a clean, memorable visual identity.</p><a class="reel-link" href="https://vimeo.com/1245678155" target="_blank" rel="noopener">Watch on Vimeo ↗</a></div>
+            </article>
+            <article class="reel-card fade-up">
+                <div class="reel-media"><iframe loading="lazy" src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F29577794901813049&amp;show_text=0&amp;width=500" title="Facebook Reel — Social Media Reel 01" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe></div>
+                <div class="reel-copy"><span class="reel-kicker">Facebook / Short-form Content</span><h3>Social Media Reel 01</h3><p>A short-form social video showcasing hook-led editing, pacing and platform-first presentation.</p><a class="reel-link" href="https://www.facebook.com/reel/29577794901813049" target="_blank" rel="noopener">Open original reel ↗</a></div>
+            </article>
+            <article class="reel-card fade-up delay-1">
+                <div class="reel-media"><iframe loading="lazy" src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F948878071622062&amp;show_text=0&amp;width=500" title="Facebook Reel — Social Media Reel 02" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe></div>
+                <div class="reel-copy"><span class="reel-kicker">Facebook / Short-form Content</span><h3>Social Media Reel 02</h3><p>A second short-form example highlighting social-first storytelling and engaging vertical video structure.</p><a class="reel-link" href="https://www.facebook.com/reel/948878071622062" target="_blank" rel="noopener">Open original reel ↗</a></div>
+            </article>
+            <article class="reel-card fade-up delay-2">
+                <div class="reel-media"><iframe loading="lazy" src="https://www.tiktok.com/player/v1/7704904885342407956?music_info=1&amp;description=1" title="Expert-led Educational TikTok Video" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+                <div class="reel-copy"><span class="reel-kicker">TikTok / Educational Content</span><h3>Expert-led Educational Reel</h3><p>Educational short-form content featuring an expert-led presentation, edited for clarity, attention and mobile viewing.</p><a class="reel-link" href="https://www.tiktok.com/@prof.dr.dileepa/video/7704904885342407956" target="_blank" rel="noopener">Open original TikTok ↗</a></div>
             </article>
         </div>
     </section>
