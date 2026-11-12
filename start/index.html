@@ -440,9 +440,10 @@
         var API = 'https://script.google.com/macros/s/AKfycbwuadNG5MkQN26zs9FqBuI3zUcE_uIWvpSQB9OtQxJ82Sgpvo8d45xfi-gUuin825evfQ/exec';
         var WA_NUMBER = '94767794670';
         var CHUNK = 8 * 1024 * 1024;   // must be a multiple of 256 KB
-        var PARALLEL = 2;
+        var PARALLEL = 4;          // files uploading at the same time
+        var INIT_BATCH = 20;       // upload sessions requested from the server per call
         var GB = 1024 * 1024 * 1024;
-        var MAX_FILE = 1 * GB, MAX_TOTAL = 10 * GB, MAX_COUNT = 100;
+        var MAX_FILE = 1 * GB, MAX_TOTAL = 10 * GB, MAX_COUNT = 200;
         // Keep in step with ALLOWED_EXT in the Apps Script (the server checks again).
         var ALLOWED = ('mp4 mov m4v mkv avi webm mts m2ts mxf 3gp wmv mpg mpeg ' +
             'mp3 wav m4a aac ogg oga opus flac wma ' +
@@ -589,12 +590,27 @@
             }
             throw new Error('status ' + r.status);
         }
-        async function uploadFile(session, file, onProgress) {
-            var init = await api({
-                action: 'initUpload', folderId: session.folderId, taskId: session.taskId, exp: session.exp, sig: session.sig,
-                name: file.name, size: file.size, mime: file.type, origin: location.origin
-            }, 3);
-            var url = init.uploadUrl, offset = 0, errors = 0;
+        // Upload sessions are requested in batches (one server call per INIT_BATCH files), only when a
+        // worker first needs a file from that batch, so the first upload starts quickly even with many files.
+        var initBatches = {};
+        function sessionFor(session, index) {
+            var b = Math.floor(index / INIT_BATCH);
+            if (!initBatches[b]) {
+                var slice = chosen.slice(b * INIT_BATCH, (b + 1) * INIT_BATCH);
+                initBatches[b] = api({
+                    action: 'initUploads', folderId: session.folderId, taskId: session.taskId, exp: session.exp, sig: session.sig,
+                    origin: location.origin,
+                    files: slice.map(function (f) { return { name: f.name, size: f.size, mime: f.type }; })
+                }, 3);
+            }
+            return initBatches[b].then(function (d) {
+                var r = (d.results || [])[index - b * INIT_BATCH];
+                if (!r || !r.ok) { var e = new Error((r && r.error) || 'UPLOAD_START_FAILED'); e.final = true; throw e; }
+                return r.uploadUrl;
+            });
+        }
+        async function uploadFile(session, file, onProgress, index) {
+            var url = await sessionFor(session, index), offset = 0, errors = 0;
             while (offset < file.size) {
                 var end = Math.min(offset + CHUNK, file.size);
                 try {
@@ -624,6 +640,7 @@
             var rows = [], sent = [], failed = [];
             var total = chosen.reduce(function (s, f) { return s + f.size; }, 0);
             var ul = $('progress'); ul.textContent = '';
+            initBatches = {};
             chosen.forEach(function (file, i) {
                 var li = document.createElement('li');
                 var row = document.createElement('div'); row.className = 'frow';
@@ -653,7 +670,8 @@
                             var p = Math.floor(bytes / file.size * 100);
                             row.meta.textContent = p + '%'; row.fill.style.width = p + '%';
                             paint();
-                        });
+                        }, i);
+                        row.li.scrollIntoView({ block: 'nearest' });
                         row.li.className = 'done'; row.meta.textContent = 'හරි ✓ ' + human(file.size); row.fill.style.width = '100%';
                     } catch (err) {
                         failed.push(file.name);
@@ -761,6 +779,7 @@
                 var wake = null;
                 try { if (navigator.wakeLock) wake = await navigator.wakeLock.request('screen'); } catch (ignore) {}
                 try { failed = await uploadAll(session); } catch (err) { failed = chosen.map(function (f) { return f.name; }); }
+                $('totalLabel').textContent = 'Files check කරනවා… තව පොඩ්ඩක් ඉන්න';
                 uploading = false;
                 try { if (wake) wake.release(); } catch (ignore) {}
                 try {
